@@ -1,0 +1,40 @@
+<h1>Listing articles</h1>
+ 
+ 
+ 
+ 	<%= search_form_for @search do |f| %>
+	  <div class="field">
+		Search by title: <%= f.text_field :title_cont %>
+	  </div>
+	  
+	  <div class="field">
+		Search by category: <%= f.text_field :category_cont %>
+	  </div>
+	  
+	  <div class="actions"><%= f.submit "Search" %></div>
+	<% end %>
+	
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= link_to article.title, article %></td>
+      <td><%= article.category %></td>
+      <td><%= article.body %></td>
+    </tr>
+  <% end %>
+  
+  
+</table>
+
+<%= will_paginate @articles %>
+
+<br />
+
+<%= link_to "New article", new_article_path  %>
