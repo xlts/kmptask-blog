@@ -1,21 +1,28 @@
 
+  <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-8">
+
+
 <h1>
 	<%= @article.title %>	
 </h1>
 
 <br />
 
-<p>
-	<%= label_tag "Category:" %>: <%= @article.category %>
+<p class="lead">
+	<%= label_tag "Category:" %> <%= @article.category %>
 </p>
 
-<br />
+<hr>
 
 <p>
 	<%= @article.body %>
 </p>
 
-<br />
+<hr>
 
 <p>
 	<%= label_tag "Tags: " %><%= @article.tag_list %>
@@ -24,24 +31,39 @@
 
 <br />
 
-<%= label_tag "Comments:" %>
-<% @article.comments.each do |comment| %>
+
+
+
+
+<div class="well">
+	<%= form_for([@article, @article.comments.build]) do |f| %>
 	
-	<p>
-		<%= comment.body %>
-	</p>
+	  <p>
+	    <%= f.label "Add a comment" %><br>
+	    <%= f.text_area :body %>
+	  </p>
+	  <p>
+	    <%= f.submit %>
+	  </p>
+	<% end %>
+</div>
 
-<% end %>
 
-<%= form_for([@article, @article.comments.build]) do |f| %>
-
-  <p>
-    <%= f.label "Add a comment" %><br>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<div class="media-body">
+	<%= label_tag "Comments:" %>
+	<% @article.comments.each do |comment| %>
+		
+		<p>
+			<%= comment.body %>
+		</p>
+	
+	<% end %>
+</div>
 
 <%= link_to "Back to articles", articles_path %>
+
+		</div>
+	</div>
+</div>
+
+

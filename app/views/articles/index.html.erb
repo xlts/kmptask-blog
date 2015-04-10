@@ -1,40 +1,54 @@
-<h1>Listing articles</h1>
- 
- 
- 
- 	<%= search_form_for @search do |f| %>
-	  <div class="field">
-		Search by title: <%= f.text_field :title_cont %>
-	  </div>
-	  
-	  <div class="field">
-		Search by category: <%= f.text_field :category_cont %>
-	  </div>
-	  
-	  <div class="actions"><%= f.submit "Search" %></div>
-	<% end %>
-	
- 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Category</th>
-    <th>Text</th>
-  </tr>
- 
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= link_to article.title, article %></td>
-      <td><%= article.category %></td>
-      <td><%= article.body %></td>
-    </tr>
-  <% end %>
-  
-  
-</table>
 
+ 
+<div class="container">
+ <div class="row">
+
+	<div class="col-md-8">
+		
+	 <h1 class="page-header">Articles</h1>
+	 
+	 
+	  <% @articles.each do |article| %>
+	   
+	   <h2>
+	   	<%= link_to article.title, article %>
+	   </h2>
+	   
+	   <p><span class="glyphicon glyphicon-time"></span> Posted on <%= article.created_at %> </p>
+	   Category: <%= article.category %>
+	   <hr>
+	   <p><%= article.body %></p>
+	   <hr>
+	  <% end %>
+ 	</div>
+ 	
+   	 <div class="col-md-4">
+
+                <!-- Blog Search Well -->
+                <div class="well">
+                	
+                    <%= search_form_for @search do |f| %>
+                    <table>
+                    	<tr>
+							<td>Search by title </td> 
+							<td> <%= f.text_field :title_cont %> </td> 
+					  	</tr>
+					  	
+					  	<tr>
+							<td>Search by category </td> 
+							<td> <%= f.text_field :category_cont %> </td> 
+					  	</tr>
+					</table>
+					  	<%= f.submit "Search" %>
+					  	
+					<% end %>
+					
+                </div>
+     </div>
+  
+  </div>
+ <div class="container">
+ 
+  
+  
 <%= will_paginate @articles %>
-
-<br />
-
-<%= link_to "New article", new_article_path  %>

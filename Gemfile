@@ -50,3 +50,7 @@ gem 'will_paginate', '~> 3.0.5'
 
 # searches
 gem 'ransack'
+
+# authentication, admin panel
+gem 'devise'
+gem 'activeadmin', github: 'activeadmin'
